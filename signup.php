@@ -14,6 +14,7 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
 $count_my_page = ("studentid.txt");
 $hits = file($count_my_page);
 $hits[0] ++;
+echo $hits[0];
 $fp = fopen($count_my_page , "w");
 fputs($fp , "$hits[0]");
 fclose($fp); 
@@ -32,15 +33,17 @@ $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->bindParam(':password',$password,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-echo '<script>alert("Your Registration successfull and your student id is  "+"'.$StudentId.'")</script>';
-}
-else 
-{
-echo "<script>alert('Something went wrong. Please try again');</script>";
-}
+echo '<script>alert("Your Registration successfull and your student id is  "+"'.$hits[0].'")</script>';
+
+// $lastInsertId = $dbh->lastInsertId();
+// if($lastInsertId)
+// {
+// echo '<script>alert("Your Registration successfull and your student id is  "+"'.$StudentId.'")</script>';
+// }
+// else 
+// {
+// echo "<script>alert('Something went wrong. Please try again');</script>";
+// }
 }
 }
 ?>
