@@ -51,7 +51,7 @@
 
               <?php if($_SESSION['admin']) {?>
                 <li class="nav-item active">
-                <a class="nav-link" href="front.php">Add New Book </a>
+                <a class="nav-link" href="addbook.php">Add New Book </a>
               </li> 
               <li class="nav-item active">
                 <a class="nav-link" href="regstu.php">Reg. Students </a>

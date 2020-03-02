@@ -9,10 +9,10 @@ header('location:front.php');
 else {
 
 $sq= "SELECT * from books";
-$qry  = $dbh->prepare($sq);
-qry->execute();
-$cnt = qry->rowCount();
-$id = cnt+1;
+$qry = $dbh->prepare($sq);
+$qry->execute();
+$cnt = $qry->rowCount();
+$id = $cnt+1;
 $name=$_POST['name'];
 $publication=$_POST['publication'];
 $author=$_POST['author']; 
