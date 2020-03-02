@@ -18,15 +18,18 @@ $publication=$_POST['publication'];
 $author=$_POST['author']; 
 $price=$_POST['price'];
 $total=$_POST['total'];
-$sql="INSERT INTO `books` (`id`, `BookName`, `Author`, `Publication`, `BookPrice`) VALUES ()";
+$sql="INSERT INTO `books` (`id`, `BookName`, `Author`, `Publication`, `BookPrice`,`Totalavailable`) VALUES ($id,:name , :author ,:publication,:bookprice,:total)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':StudentId',$StudentId,PDO::PARAM_STR);
-$query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
-$query->bindParam(':email',$email,PDO::PARAM_STR);
-$query->bindParam(':password',$password,PDO::PARAM_STR);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
+$query->bindParam(':name',$name,PDO::PARAM_STR);
+$query->bindParam(':author',$author,PDO::PARAM_STR);
+$query->bindParam(':publication',$publication,PDO::PARAM_STR);
+$query->bindParam(':bookprice',$price,PDO::PARAM_STR);
+$query->bindParam(':total',$total,PDO::PARAM_STR);
+
+if($query->rowCount() && $name.length > 0)
 $query->execute();
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +65,7 @@ $query->execute();
 
         </div>
 
-<form>
+<form method= "POST">
  
 <div class="form-group">
     <label for="exampleInputPassword1">Book Title</label>
@@ -94,4 +97,4 @@ $query->execute();
 <?php  include('./style/phpfile/footer.php')  ?>
 </body>
 </html>
-<?php } ?>
+
