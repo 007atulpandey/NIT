@@ -57,7 +57,7 @@
                 <a class="nav-link" href="regstu.php">Reg. Students </a>
               </li> 
               <li class="nav-item active">
-                <a class="nav-link" href="front.php">Issued books </a>
+                <a class="nav-link" href="issue.php">Issue books </a>
               </li>
 
 
