@@ -59,6 +59,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="issue.php">Issue books </a>
               </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="libsignup.php">Reg  Librarian </a>
+              </li>
 
 
               <li class="nav-item mr-2">

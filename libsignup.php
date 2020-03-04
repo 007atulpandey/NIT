@@ -10,29 +10,21 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         echo "<script>alert('Incorrect verification code');</script>" ;
     } 
         else {    
-//Code for student ID
-$count_my_page = ("studentid.txt");
-$hits = file($count_my_page);
-$hits[0] ++;
-echo $hits[0];
-$fp = fopen($count_my_page , "w");
-fputs($fp , "$hits[0]");
-fclose($fp); 
-$StudentId= $hits[0];   
-$fname=$_POST['fullanme'];
+  
+$name=$_POST['fullname'];
 $mobileno=$_POST['mobileno'];
 $email=$_POST['email']; 
-$password=md5($_POST['password']); 
-$status=1;
-$sql="INSERT INTO  tblstudents(StudentId,FullName,MobileNumber,EmailId,Password,Status) VALUES(:StudentId,:fname,:mobileno,:email,:password,:status)";
+$password=md5($_POST['vercode']); 
+
+$sql="INSERT INTO  librarian(name,mobile,email,password) VALUES(:name,:mobile,:email,:password)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':StudentId',$StudentId,PDO::PARAM_STR);
-$query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
+$query->bindParam(':name',$name,PDO::PARAM_STR);
+$query->bindParam(':mobile',$mobileno,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->bindParam(':password',$password,PDO::PARAM_STR);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
+
 $query->execute();
+
 echo '<script>alert("Your Registration successfull and your student id is  "+"'.$hits[0].'")</script>';
 
 // $lastInsertId = $dbh->lastInsertId();
@@ -61,32 +53,21 @@ echo '<script>alert("Your Registration successfull and your student id is  "+"'.
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="style/css/font-awesome.css" rel="stylesheet" />
 <link href="style/css/style.css" rel="stylesheet" />
 <title>Document</title>
 
-<script type="text/javascript">
-function valid()
-{
-if(document.signup.password.value!= document.signup.confirmpassword.value)
-{
-alert("Password and Confirm Password Field do not match  !!");
-document.signup.confirmpassword.focus();
-return false;
-}
-return true;
-}
-</script>
+
 <script>
 function checkAvailability() {
-    
+    <?php $email = $_POST['email']; ?>
 $("#loaderIcon").show();
 jQuery.ajax({
 url: "check_availability.php",
 data:'emailid='+$("#emailid").val(),
 type: "POST",
 success:function(data){
-   
 $("#user-availability-status").html(data);
 $("#loaderIcon").hide();
 },
@@ -124,7 +105,7 @@ error:function (){}
                             <form name="signup" method="post" onSubmit="return valid();">
 <div class="form-group">
 <label>Enter Full Name</label>
-<input class="form-control" type="text" name="fullanme" autocomplete="off" required />
+<input class="form-control" type="text" name="fullname" autocomplete="off" required />
 </div>
 
 
@@ -139,15 +120,7 @@ error:function (){}
    <span id="user-availability-status" style="font-size:12px;"></span> 
 </div>
 
-<div class="form-group">
-<label>Enter Password</label>
-<input class="form-control" type="password" name="password" autocomplete="off" required  />
-</div>
 
-<div class="form-group">
-<label>Confirm Password </label>
-<input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
-</div>
  <div class="form-group">
 <label>Verification code : </label>
 <input type="text"  name="vercode" maxlength="6" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;&nbsp; <span style="background-color:lightblue " ><strong> <?php $_SESSION["vercode"]= (string) rand(100000,999999) ; echo $_SESSION["vercode"];  ?>  </strong></span>

@@ -17,6 +17,7 @@ $cnt=1;
 if($query -> rowCount() > 0)
 {
 echo "<span style='color:red'> Email already exists .</span>";
+echo "<script> windows.alert('khatra'); </script>";
  echo "<script>$('#submit').prop('disabled',true);</script>";
 } else{
 	
