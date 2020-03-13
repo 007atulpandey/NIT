@@ -19,6 +19,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="front.php">Home <span class="sr-only">(current)</span></a>
               </li>
+           
               <?php if($_SESSION['login']) {?>
               <li class="nav-item mr-2">
                   <div class="btn-group">
@@ -109,7 +110,12 @@
               <li class="nav-item mr-2">
                 <a class="btn btn-outline-danger" href="signup.php">SignUp</a>
               </li>
+              <li class="nav-item mr-2">
+                <a class="btn btn-outline-danger" href="liblogin.php">Librarian SignIn</a>
+              </li>
              <?php  }?>
+             
+
              
             </ul>
           </div>

@@ -10,7 +10,15 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         echo "<script>alert('Incorrect verification code');</script>" ;
     } 
         else {    
-  
+
+            $sq= "select * from librarian";
+            $q = $dbh->prepare($sq);
+            $q->execute();
+            if($q->rowCount()==2){
+                echo '<script > alert("two librarians are already exists ")</script>';
+            }
+            else {
+                  
 $name=$_POST['fullname'];
 $mobileno=$_POST['mobileno'];
 $email=$_POST['email']; 
@@ -26,6 +34,9 @@ $query->bindParam(':password',$password,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Registration successfull and your student id is  "+"'.$hits[0].'")</script>';
+
+                
+            }
 
 // $lastInsertId = $dbh->lastInsertId();
 // if($lastInsertId)

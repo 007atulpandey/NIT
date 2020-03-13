@@ -8,6 +8,19 @@ header('location:front.php');
 }
 else{ 
 
+    
+if(isset($_GET['del']))
+{
+$id=$_GET['del'];
+$sql = "delete from tblstudents  WHERE StudentId=:id";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> execute();
+$_SESSION['delmsg']="Author deleted";
+header('location:regstu.php');
+
+}
+
 
 ?>
 
@@ -79,11 +92,12 @@ foreach($results as $result)
 
 
 
-    <tr>
-      <th scope="row"><?php echo htmlentities($result->id);?></th>
+    <tr >
+      <th scope="row" ><?php echo htmlentities($result->StudentId);?></th>
       <td><?php echo htmlentities($result->FullName);?></td>
       <td><?php echo htmlentities($result->EmailId);?></td>
       <td><?php echo htmlentities($result->MobileNumber);?></td>
+      <td> <a href="regstu.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-primary" > X</button></a> </td>
     </tr>
 
 
@@ -109,6 +123,12 @@ foreach($results as $result)
 
 
 <?php  include('./style/phpfile/footer.php')  ?>
+
+<script >  
+function delete(cls){
+    $('.'+cls).css("display","none");
+}
+</script>
 </body>
 </html>
 <?php } ?>

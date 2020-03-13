@@ -20,36 +20,36 @@ include('style/phpfile/config.php');
 <title>Document</title>
 </head>
 <body>
-    <?php include('./style/phpfile/header.php'); ?>
+   
+<div style="min-height:170px; background-color:grey" class = "px-4 py-4" >
+<center>
+<img src="http://172.16.1.10/img/logo1.png" alt="logo" height="140px" width="140px">
 
-<div class="container">
-    
- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://cdn.quotes.pub/660x400/i-have-always-imagined-that-paradise-will-be-20965.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="https://cdn.quotes.pub/660x400/i-have-always-imagined-that-paradise-will-be-20965.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="https://cdn.quotes.pub/660x400/i-have-always-imagined-that-paradise-will-be-20965.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+<p style = "font-family : satisfy;font-size:2rem; color:black;"> When in doubt, go to the library. </p>
+</center>
 
 </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">  <a class="navbar-brand" href="front.php">LIBRARY</a>
+          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        </nav>
+    <div class=" mt-5 mb-5" style = "min-height:90px;background-color: #e3afd2 ">
+   
+   <div class="nav-item col-12 px-5 py-5 ">
+   <span>
+   <h3 class="text-muted"> Search Here </h3>
+   </span>
+   
+                   <form class="form-inline my-2 my-lg-2 container-fluid ">
+                       <input class="form-control form-control-lg mr-0 col-10" type="search" placeholder="Search for courses" aria-label="Search" onkeyup = "showHint(this.value)">
+                      <a href=""></a> <button class="btn btn-light btn-lg my-2 my-sm-0 ml-0 col-2" type="submit"><i class="fas fa-search"></i></button>
+                     </form>
  
-  <!-- carouselExampleCaptions -->
-
-<?php  include('./style/phpfile/footer.php')  ?>
-</body>
-</html>
+               </div>
+     </div>
+  
+ 
