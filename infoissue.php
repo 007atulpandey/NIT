@@ -2,7 +2,7 @@
 session_start();
 include('style/phpfile/config.php');
 error_reporting(0);
-if(strlen($_SESSION['login'])==0 && strlen($_SESSION['admin'])==0 && strlen($_SESSION['libid'])==0 )
+if( strlen($_SESSION['admin'])==0 && strlen($_SESSION['libid'])==0 )
     {   
 header('location:front.php');
 }
@@ -24,6 +24,9 @@ else{
 <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
 <link href="style/css/font-awesome.css" rel="stylesheet" />
 <link href="style/css/style.css" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ 
 <title>Document</title>
 </head>
 <body>
@@ -50,7 +53,7 @@ else{
                         <div class="panel-body">
                           
 <?php 
-$sql1 = "SELECT * from books";
+$sql1 = "SELECT * from tblstudents";
 $quer= $dbh->prepare($sql1);
 $quer->execute();
 $results=$quer->fetchAll(PDO::FETCH_OBJ);
@@ -61,40 +64,40 @@ if($quer->rowCount() > 0)
 {
     $tmp = 1;
     ?>
-    
-<table class="table table-dark">
-<thead>
-  <tr>
-    <th scope="col">id</th>
-    <th scope="col">Book Name</th>
-    <th scope="col">Author</th>
-    <th scope="col">Price</th>
-  </tr>
-</thead>
-<tbody>
+<div class="container">
+    <div class="row py-2 mb-3" style="text-align:center;color:white; background-color:purple;font-weight:bold">
+       
+<div class="col-md-2 heading" > Id</div>
+<div class="col-md-3 heading">Full Name</div>
+<div class="col-md-3 heading">Email</div>
+<div class="col-md-2 heading">Mobile No</div>
+       
+</div>
+
+
 <?php
 foreach($results as $result)
 {               ?>  
 
 
+        <div data-aos="zoom-out-left" class="row py-2 mb-3" style="text-align:center;color:white; background-color:lightpink;font-weight:bold">
+            
+            <div class="col-md-2 heading" ><?php echo htmlentities($result->StudentId);?></div>
+            <div class="col-md-3 heading"><?php echo htmlentities($result->FullName);?></div>
+            <div class="col-md-3 heading"><?php echo htmlentities($result->EmailId);?></div>
+            <div class="col-md-2 heading"><?php echo htmlentities($result->MobileNumber);?></div>
+                    
+        </div>
+ <?php }?>
 
+</div>
 
-    <tr>
-      <th scope="row"><?php echo htmlentities($result->id);?></th>
-      <td><?php echo htmlentities($result->BookName);?></td>
-      <td><?php echo htmlentities($result->Author);?></td>
-      <td><?php echo htmlentities($result->BookPrice);?></td>
-    </tr>
-
-
-
-   
-<?php }} ?>
+<?php } ?>
 
 <table class="table table-dark">
   <thead>
     <tr>
-    <th scope="col">Total Books</th>
+    <th scope="col">Total Students</th>
       <th scope="col"> <?php echo $quer->rowCount();   ?></th>
 </thead>
 </table>
@@ -109,6 +112,9 @@ foreach($results as $result)
 
 
 <?php  include('./style/phpfile/footer.php')  ?>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
 <?php } ?>

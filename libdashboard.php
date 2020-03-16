@@ -42,6 +42,7 @@ else {
 
 <div class="row row-cols-1 row-cols-md-2">
   <div class="col mb-4">
+  <a href="infostu.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center>
         <h1 style="font-size:90px;">  <i class="fas fa-user-graduate"></i> </h1>
@@ -64,8 +65,10 @@ else {
       </div>
       </center>
     </div>
+</a>
   </div>
   <div class="col mb-4">
+  <a href="infostu.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center> 
             <h1 style="font-size:90px;">                        <i class="fas fa-book"></i>                     </h1>
@@ -87,8 +90,10 @@ else {
       </div>
       </center>      
     </div>
+</a>
   </div>
   <div class="col mb-4">
+      <a href="infostu.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center>
         <h1 style="font-size:90px;">                         <i class="fas fa-user-check"></i>                      </h1>
@@ -110,8 +115,10 @@ else {
       </div>
       </center>
     </div>
+    </a>
   </div>
   <div class="col mb-4">
+  <a href="infostu.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center>
         <h1 style="font-size:90px;">                         <i class="fas fa-id-card"></i>                     </h1>
@@ -137,6 +144,7 @@ else {
       </div>
       </center>
     </div>
+</a>
   </div>
 </div>
 
