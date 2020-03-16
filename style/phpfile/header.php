@@ -50,21 +50,39 @@
               </li>
 <?php }?>
 
-              <?php if($_SESSION['admin']) {?>
+              <?php if($_SESSION['libid']) {?>
                 <li class="nav-item active">
                 <a class="nav-link" href="addbook.php">Add New Book </a>
               </li> 
               <li class="nav-item active">
-                <a class="nav-link" href="regstu.php">Reg. Students </a>
+                <a class="nav-link" href="signup.php">Reg. Students </a>
               </li> 
               <li class="nav-item active">
                 <a class="nav-link" href="issue.php">Issue books </a>
               </li>
+              <?php if($_SESSION['admin']) {?>
               <li class="nav-item active">
                 <a class="nav-link" href="libsignup.php">Reg  Librarian </a>
               </li>
+              
+              <a class="mr-2" href="admindashboard.php" style="text-decoration:none ; display: inline-flex">
+                <div style="border: radius 10px;">
+                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
+                </div>
+                <span style="font-size:18px"></span>
+               
+              
+              </a>
+              <?php } ?>
 
-
+              <a class="mr-2" href="libdashboard.php" style="text-decoration:none ; display: inline-flex">
+                <div style="border: radius 10px;">
+                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
+                </div>
+                <span style="font-size:18px"></span>
+               
+              
+              </a>
               <li class="nav-item mr-2">
                   <div class="btn-group">
                       <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,14 +99,6 @@
 
                           
 
-              <a class="mr-2" href="admindashboard.php" style="text-decoration:none ; display: inline-flex">
-                <div style="border: radius 10px;">
-                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
-                </div>
-                <span style="font-size:18px"></span>
-               
-              
-              </a>
              
               <li class="nav-item">
                 <a class="btn btn-outline-success" href="logout.php" tabindex="-1" aria-disabled="true">Logout</a>
@@ -100,15 +110,12 @@
 
 
 
-             <?php if(!($_SESSION['login'] || $_SESSION['admin']) ) {?>
+             <?php if(!($_SESSION['login'] || $_SESSION['admin']|| $_SESSION['libid'])) {?>
               <li class="nav-item mr-2">
                 <a class="btn btn-outline-danger" href="login.php">LogIn</a>
               </li>
               <li class="nav-item mr-2">
                 <a class="btn btn-outline-danger" href="adminlogin.php">adminLogin</a>
-              </li>
-              <li class="nav-item mr-2">
-                <a class="btn btn-outline-danger" href="signup.php">SignUp</a>
               </li>
               <li class="nav-item mr-2">
                 <a class="btn btn-outline-danger" href="liblogin.php">Librarian SignIn</a>

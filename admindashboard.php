@@ -28,9 +28,10 @@ else {
 <body>
     <?php include('style/phpfile/header.php');   ?>
 
-  <i class="fas fa-user-graduate"></i>
 
+<h1></h1><i class="fas fa-user-graduate"></i>
 
+</i>
 
 
 

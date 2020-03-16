@@ -17,10 +17,13 @@ $query->bindParam(':studid',$stuid,PDO::PARAM_STR);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 
  $sqb = "select Totalavailable from books where id = ".$bookid;
+ $sqs = "select * from tblstudents where studentId = ".$stuid;
+ $qs = $dbh->prepare($sqs);
+ $qs->execute();
  $q=$dbh->prepare($sqb);
  $results=$q->fetchAll(PDO::FETCH_OBJ);
  $q->execute();
- if($q->rowCount()>0){
+ if($q->rowCount()>0 && $qs->rowCount()>0){
     
     foreach($results as $result)
 { 

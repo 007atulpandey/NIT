@@ -22,7 +22,7 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
 $name=$_POST['fullname'];
 $mobileno=$_POST['mobileno'];
 $email=$_POST['email']; 
-$password=md5($_POST['vercode']); 
+$password=($_POST['vercode']); 
 
 $sql="INSERT INTO  librarian(name,mobile,email,password) VALUES(:name,:mobile,:email,:password)";
 $query = $dbh->prepare($sql);
