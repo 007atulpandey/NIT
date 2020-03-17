@@ -8,17 +8,17 @@ header('location:front.php');
 }
 else{ 
     
-    // if(isset($_GET['del']))
-    // {
-    // $id=$_GET['del'];
-    // $sql = "delete from issuedbooks  WHERE id=:id";
-    // $query = $dbh->prepare($sql);
-    // $query -> bindParam(':id',$id, PDO::PARAM_STR);
-    // $query -> execute();
-    // $_SESSION['delmsg']="Author deleted";
-    // header('location:infostu.php');
+    if(isset($_GET['del']))
+    {
+    $id=$_GET['del'];
+    $sql = "delete from books  WHERE id=:id";
+    $query = $dbh->prepare($sql);
+    $query -> bindParam(':id',$id, PDO::PARAM_STR);
+    $query -> execute();
+    $_SESSION['delmsg']="Author deleted";
+    header('location:infostu.php');
     
-    // }
+    }
     
 
 ?>
@@ -35,8 +35,6 @@ else{
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
 <link href="style/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  
 <link href="style/css/style.css" rel="stylesheet" />
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -67,7 +65,20 @@ else{
                         <div class="panel-body">
                           
 <?php 
-$sql1 = "SELECT distinct Author from books";
+
+if(isset($_GET['author']))
+{
+$id=$_GET['author'];
+$ids= explode("%20",$id);
+
+
+$name = $ids[0].' '.$ids[1];
+
+$sql1 = "SELECT * from books where Author = '".$name."'";
+}
+else{
+    $sql1 = "SELECT * from books";
+}
 $quer= $dbh->prepare($sql1);
 $quer->execute();
 $results=$quer->fetchAll(PDO::FETCH_OBJ);
@@ -82,25 +93,25 @@ if($quer->rowCount() > 0)
     <div class="row py-2 mb-3" style="text-align:center;color:white; background-color:purple;font-weight:bold">
        
 <div class="col-md-2 heading" > Id</div>
-<div class="col-md-3 heading">StudentId</div>
-<!-- <div class="col-md-3 heading">BookId</div>
-<div class="col-md-2 heading">Issuedate</div> -->
-<div class="col-md-2 heading">checkOut</div>      
+<div class="col-md-3 heading">BookName</div>
+<div class="col-md-3 heading">Publication</div>
+<div class="col-md-2 heading">Price</div>
+<div class="col-md-2 heading">delete</div>      
 </div>
 
 
 <?php
-$id=0;
 foreach($results as $result)
-{            $id++;   ?>  
+{               ?>  
 
 
         <div data-aos="zoom-out-left" class="row py-2 mb-3" style="text-align:center;color:white; background-color:lightpink;font-weight:bold">
             
-            <div class="col-md-2 heading" ><?php echo htmlentities($id);?></div>
-            <div class="col-md-3 heading"><?php echo htmlentities($result->Author);?></div>
-
-            <div class="col-md-2 heading"><a href="totalbooks.php?author=<?php echo htmlentities($result->Author);?> "> <button class="btn btn-outline-success" ><i class="fas fa-check-circle"></i></button></a>  </div>   
+            <div class="col-md-2 heading" ><?php echo htmlentities($result->id);?></div>
+            <div class="col-md-3 heading"><?php echo htmlentities($result->BookName);?></div>
+            <div class="col-md-3 heading"><?php echo htmlentities($result->Publication);?></div>
+            <div class="col-md-2 heading"><?php echo htmlentities($result->BookPrice);?></div>
+            <div class="col-md-2 heading"><a href="listissue.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-danger" > X</button></a>  </div>   
         </div>
  <?php }?>
 

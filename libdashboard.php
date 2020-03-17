@@ -93,7 +93,7 @@ else {
 </a>
   </div>
   <div class="col mb-4">
-      <a href="infostu.php" style = "text-decoration:none ; color :grey">
+      <a href="author.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center>
         <h1 style="font-size:90px;">                         <i class="fas fa-user-check"></i>                      </h1>
@@ -118,7 +118,7 @@ else {
     </a>
   </div>
   <div class="col mb-4">
-  <a href="infostu.php" style = "text-decoration:none ; color :grey">
+  <a href="totalbooks.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center>
         <h1 style="font-size:90px;">                         <i class="fas fa-id-card"></i>                     </h1>
