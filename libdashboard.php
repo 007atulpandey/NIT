@@ -68,7 +68,7 @@ else {
 </a>
   </div>
   <div class="col mb-4">
-  <a href="infostu.php" style = "text-decoration:none ; color :grey">
+  <a href="listissue.php" style = "text-decoration:none ; color :grey">
     <div class="card py-3" data-aos="zoom-in-left">
         <center> 
             <h1 style="font-size:90px;">                        <i class="fas fa-book"></i>                     </h1>

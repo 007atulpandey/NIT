@@ -2,25 +2,24 @@
 session_start();
 include('style/phpfile/config.php');
 error_reporting(0);
-if(strlen($_SESSION['libid'])==0 && strlen($_SESSION['admin'])==0)
+if( strlen($_SESSION['admin'])==0 && strlen($_SESSION['libid'])==0 )
     {   
 header('location:front.php');
 }
 else{ 
-
     
-if(isset($_GET['del']))
-{
-$id=$_GET['del'];
-$sql = "delete from tblstudents  WHERE StudentId=:id";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':id',$id, PDO::PARAM_STR);
-$query -> execute();
-$_SESSION['delmsg']="Author deleted";
-header('location:regstu.php');
-
-}
-
+    if(isset($_GET['del']))
+    {
+    $id=$_GET['del'];
+    $sql = "delete from issuedbooks  WHERE id=:id";
+    $query = $dbh->prepare($sql);
+    $query -> bindParam(':id',$id, PDO::PARAM_STR);
+    $query -> execute();
+    $_SESSION['delmsg']="Author deleted";
+    header('location:infostu.php');
+    
+    }
+    
 
 ?>
 
@@ -37,6 +36,9 @@ header('location:regstu.php');
 <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
 <link href="style/css/font-awesome.css" rel="stylesheet" />
 <link href="style/css/style.css" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ 
 <title>Document</title>
 </head>
 <body>
@@ -63,7 +65,7 @@ header('location:regstu.php');
                         <div class="panel-body">
                           
 <?php 
-$sql1 = "SELECT * from tblstudents";
+$sql1 = "SELECT * from issuedbooks";
 $quer= $dbh->prepare($sql1);
 $quer->execute();
 $results=$quer->fetchAll(PDO::FETCH_OBJ);
@@ -74,36 +76,35 @@ if($quer->rowCount() > 0)
 {
     $tmp = 1;
     ?>
-    
-<table class="table table-dark">
-<thead>
-  <tr>
-    <th scope="col">id</th>
-    <th scope="col">Student Name</th>
-    <th scope="col">Email</th>
-    <th scope="col">Mobile</th>
-  </tr>
-</thead>
-<tbody>
+<div class="container">
+    <div class="row py-2 mb-3" style="text-align:center;color:white; background-color:purple;font-weight:bold">
+       
+<div class="col-md-2 heading" > Id</div>
+<div class="col-md-3 heading">StudentId</div>
+<div class="col-md-3 heading">BookId</div>
+<div class="col-md-2 heading">Issuedate</div>
+<div class="col-md-2 heading">delete</div>      
+</div>
+
+
 <?php
 foreach($results as $result)
 {               ?>  
 
 
+        <div data-aos="zoom-out-left" class="row py-2 mb-3" style="text-align:center;color:white; background-color:lightpink;font-weight:bold">
+            
+            <div class="col-md-2 heading" ><?php echo htmlentities($result->id);?></div>
+            <div class="col-md-3 heading"><?php echo htmlentities($result->studId);?></div>
+            <div class="col-md-3 heading"><?php echo htmlentities($result->BookId);?></div>
+            <div class="col-md-2 heading"><?php echo htmlentities($result->IssueDate);?></div>
+            <div class="col-md-2 heading"><a href="listissue.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-danger" > X</button></a>  </div>   
+        </div>
+ <?php }?>
 
+</div>
 
-    <tr >
-      <th scope="row" ><?php echo htmlentities($result->StudentId);?></th>
-      <td><?php echo htmlentities($result->FullName);?></td>
-      <td><?php echo htmlentities($result->EmailId);?></td>
-      <td><?php echo htmlentities($result->MobileNumber);?></td>
-      <td> <a href="regstu.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-primary" > X</button></a> </td>
-    </tr>
-
-
-
-   
-<?php }} ?>
+<?php } ?>
 
 <table class="table table-dark">
   <thead>
@@ -123,11 +124,8 @@ foreach($results as $result)
 
 
 <?php  include('./style/phpfile/footer.php')  ?>
-
-<script >  
-function delete(cls){
-    $('.'+cls).css("display","none");
-}
+<script>
+  AOS.init();
 </script>
 </body>
 </html>
