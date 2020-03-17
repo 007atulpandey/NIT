@@ -7,7 +7,19 @@ if( strlen($_SESSION['admin'])==0 && strlen($_SESSION['libid'])==0 )
 header('location:front.php');
 }
 else{ 
-
+    
+    if(isset($_GET['del']))
+    {
+    $id=$_GET['del'];
+    $sql = "delete from tblstudents  WHERE StudentId=:id";
+    $query = $dbh->prepare($sql);
+    $query -> bindParam(':id',$id, PDO::PARAM_STR);
+    $query -> execute();
+    $_SESSION['delmsg']="Author deleted";
+    header('location:infostu.php');
+    
+    }
+    
 
 ?>
 
@@ -71,7 +83,7 @@ if($quer->rowCount() > 0)
 <div class="col-md-3 heading">Full Name</div>
 <div class="col-md-3 heading">Email</div>
 <div class="col-md-2 heading">Mobile No</div>
-       
+<div class="col-md-2 heading">delete</div>      
 </div>
 
 
@@ -86,7 +98,7 @@ foreach($results as $result)
             <div class="col-md-3 heading"><?php echo htmlentities($result->FullName);?></div>
             <div class="col-md-3 heading"><?php echo htmlentities($result->EmailId);?></div>
             <div class="col-md-2 heading"><?php echo htmlentities($result->MobileNumber);?></div>
-                    
+            <div class="col-md-2 heading"><a href="regstu.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-danger" > X</button></a>  </div>   
         </div>
  <?php }?>
 

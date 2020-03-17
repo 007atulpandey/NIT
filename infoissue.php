@@ -67,10 +67,10 @@ if($quer->rowCount() > 0)
 <div class="container">
     <div class="row py-2 mb-3" style="text-align:center;color:white; background-color:purple;font-weight:bold">
        
-<div class="col-md-2 heading" > Id</div>
-<div class="col-md-3 heading">Full Name</div>
-<div class="col-md-3 heading">Email</div>
-<div class="col-md-2 heading">Mobile No</div>
+<div class="col-md-2 heading" >Student</div>
+<div class="col-md-3 heading">Studentid</div>
+<div class="col-md-3 heading">Book Id</div>
+<div class="col-md-2 heading">Issued Date</div>
        
 </div>
 
