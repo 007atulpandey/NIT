@@ -9,28 +9,39 @@ if(isset($_POST['issue']))
 $stuid=$_POST['stuid'];
 
 $bookid=$_POST['bookid']; 
+$timestamp = strtotime("+1 week"); 
+$dat=date("Y-m-d h:i:s", $timestamp);
 
-$sql="INSERT INTO  issuedbooks(studid,bookid) VALUES(:studid,:bookid)";
+$date = (string)$dat;
+
+$sql="INSERT INTO  issuedbooks(studid,bookid,ReturnDate) VALUES(:studid,:bookid,:returndate)";
 
 $query = $dbh->prepare($sql);
 $query->bindParam(':studid',$stuid,PDO::PARAM_STR);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
-
- $sqb = "select Totalavailable from books where id = ".$bookid;
- $sqs = "select * from tblstudents where studentId = ".$stuid;
+$query->bindParam(':returndate',$date,PDO::PARAM_STR);
+ $sqb = "select Totalavailable from books where id =:id";
+ $sqs = "select * from tblstudents where StudentId =:stuid ";
  $qs = $dbh->prepare($sqs);
- $qs->execute();
- $q=$dbh->prepare($sqb);
- $results=$q->fetchAll(PDO::FETCH_OBJ);
+$q=$dbh->prepare($sqb);
+
+
+$q->bindParam(':id',$bookid,PDO::PARAM_STR);
+$qs->bindParam(':stuid',$stuid,PDO::PARAM_STR);
+
+  $qs->execute();
  $q->execute();
+ $results=$q->fetchAll(PDO::FETCH_OBJ);
+
  if($q->rowCount()>0 && $qs->rowCount()>0){
     
     foreach($results as $result)
 { 
     echo '<script>alert("book issued ")'.$result->Totalavailable.'</script>'; 
+    break;
 }
-
-    $query->execute();
+$query->execute();
+  
     
  }
  else {
@@ -105,6 +116,8 @@ error:function (){}
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">Book Issue</h4>
+
+             
                 
                             </div>
 
@@ -130,7 +143,7 @@ error:function (){}
 <input class="form-control" type="bookid" name="bookid" id="bookid"   autocomplete="off" required  />
    <span id="user-availability-status" style="font-size:12px;"></span> 
 </div>
-                            
+                    
 <button type="submit" name="issue" class="btn btn-danger" id="submit">confirm </button>
 
                                     </form>
