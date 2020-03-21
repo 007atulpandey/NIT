@@ -2,7 +2,9 @@
 session_start();
 include('style/phpfile/config.php');
 error_reporting(0);
-
+$fine =0;
+$bookid="";
+$stuid="";
 if(isset($_POST['issue']))
 {
   
@@ -18,7 +20,20 @@ $query->bindParam(':studid',$stuid,PDO::PARAM_STR);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 
 $query->execute();
+
 if($query->rowCount()){
+   $sql = "select fine from books where id =:id";
+   $query = $dbh->prepare($sql);
+   $query=bindParam(':id',$bookid,PDO::PARAM_STR);
+   $query->execute();
+   $resu = $query->fetch();
+   echo "take fine ".$resu[0];
+   $total = $resu[0]+$fine;
+   $sq= "UPDATE `books` SET `fine` = :total WHERE `books`.`id` = :id";
+   $quer = $dbh->prepare($sq);
+   $quer=bindParam(':id',$bookid,PDO::PARAM_STR);
+   $quer->execute();
+
 echo '<script>alert("Book Returned Successfully ");</script>'; 
    
  }
@@ -26,10 +41,43 @@ echo '<script>alert("Book Returned Successfully ");</script>';
      # code...
      echo '<script>alert("not available ")</script>';
  }
+}
+
+//  check payment...
 
 
+ if(isset($_POST['check']))
+{
+  
+$stuid=$_POST['stuid'];
+
+$bookid=$_POST['bookid']; 
 
 
+$sql="select ReturnDate from  issuedbooks where studId=:studid and BookId =:bookid";
+
+$query = $dbh->prepare($sql);
+$query->bindParam(':studid',$stuid,PDO::PARAM_STR);
+$query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
+$date = date("Y-m-d h:i:s");
+echo $date ; 
+$query->execute();
+$result = $query->fetch();
+echo $result[0];
+$d1 = strtotime($result[0]);
+$d2 = strtotime($date);
+$fin =((abs)($d2-$d1))/86400;
+$fine = floor($fin);
+echo ($d2-$d1)/86400;
+if($query->rowCount()){
+    echo $result[0];
+// echo '<script>alert("Book Returned Successfully ");</script>'; 
+   
+ }
+ else {
+     # code...
+     echo '<script>alert("not available ")</script>';
+ }
 
 }
 ?>
@@ -111,18 +159,23 @@ error:function (){}
                             <form name="issue" method="post" >
 <div class="form-group">
 <label>Student Id</label>
-<input class="form-control" type="text" name="stuid" autocomplete="off" required />
+<input class="form-control" type="text" value ="<?php echo $stuid; ?>"  name="stuid" autocomplete="off" required />
 </div>
 
 
                                         
 <div class="form-group">
 <label>book id </label>
-<input class="form-control" type="bookid" name="bookid" id="bookid"   autocomplete="off" required  />
+<input class="form-control" type="bookid" value ="<?php echo $bookid; ?>"  name="bookid" id="bookid"   autocomplete="off" required  />
    <span id="user-availability-status" style="font-size:12px;"></span> 
 </div>
-                    
-<button type="submit" name="issue" class="btn btn-danger" id="submit">confirm </button>
+<div class="form-group">
+<label>Fine </label>
+<input class="form-control" value ="<?php echo $fine; ?>"   autocomplete="off" required readonly />
+
+</div>
+<button type="submit" name="check" class="btn btn-success mt-2" id="submit">check </button>                 
+<button type="submit" name="issue" class="btn btn-danger mt-2" id="submit">return </button>
 
                                     </form>
                             </div>

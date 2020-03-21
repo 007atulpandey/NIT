@@ -1,3 +1,7 @@
+ <!--
+ navbarr  
+-->
+
 
 <div style="min-height:170px; background-color:grey" class = "px-4 py-4" >
 <center>
@@ -51,6 +55,64 @@
 <?php }?>
 
               <?php if($_SESSION['libid']) {?>
+              <li class="nav-item mr-2">
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       FEATURES
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                      <a href="returnform.php" class="dropdown-item" type="button">Book Return</a>
+                        <a href="libupdate.php" class="dropdown-item" type="button">Update Profile </a>
+                        <a href="publications.php" class="dropdown-item" type="button">Publicatoins </a>
+                        <a href="author.php" class="dropdown-item" type="button">Author </a>
+                      </div>
+                    </div>
+              </li>
+
+                          
+
+              <a class="mr-2" href="libdashboard.php" style="text-decoration:none ; display: inline-flex">
+                <div style="border: radius 10px;">
+                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
+                </div>
+                <span style="font-size:18px"></span>
+               
+              
+              </a>
+             
+<?php }?>
+<?php if($_SESSION['admin']) {?>
+              <li class="nav-item mr-2">
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       FEATURES
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a href="adminpro.php" class="dropdown-item" type="button">Update Profile </a>
+                        <a href="publications.php" class="dropdown-item" type="button">Publicatoins </a>
+                        <a href="author.php" class="dropdown-item" type="button">Author </a>
+                      </div>
+                    </div>
+              </li>
+
+                          
+
+              <a class="mr-2" href="admindashboard.php" style="text-decoration:none ; display: inline-flex">
+                <div style="border: radius 10px;">
+                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
+                </div>
+                <span style="font-size:18px"></span>
+               
+              
+              </a>
+             
+              
+<?php }?>
+    
+      <!--   all set  -->
+
+
+              <?php if($_SESSION['libid']) {?>
                 <li class="nav-item active">
                 <a class="nav-link" href="addbook.php">Add New Book </a>
               </li> 
@@ -65,37 +127,8 @@
                 <a class="nav-link" href="libsignup.php">Reg  Librarian </a>
               </li>
               
-              <a class="mr-2" href="admindashboard.php" style="text-decoration:none ; display: inline-flex">
-                <div style="border: radius 10px;">
-                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
-                </div>
-                <span style="font-size:18px"></span>
-               
-              
-              </a>
               <?php } ?>
 
-              <a class="mr-2" href="libdashboard.php" style="text-decoration:none ; display: inline-flex">
-                <div style="border: radius 10px;">
-                  <img class="mr-2" height="24px" width="24px" src="https://cdn1.iconfinder.com/data/icons/navigation-elements/512/user-login-man-human-body-mobile-person-512.png" alt="user">
-                </div>
-                <span style="font-size:18px"></span>
-               
-              
-              </a>
-              <li class="nav-item mr-2">
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       FEATURES
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <a href="adminpro.php" class="dropdown-item" type="button">Update Profile</a>
-                        <a href="publications.php" class="dropdown-item" type="button">Publications </a>
-                        <a href="author.php" class="dropdown-item" type="button">Author </a>
-                        
-                      </div>
-                    </div>
-              </li>
 
                           
 
@@ -127,3 +160,6 @@
             </ul>
           </div>
         </nav>
+
+
+<!--  navbarr -->
