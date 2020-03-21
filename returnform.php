@@ -171,7 +171,7 @@ error:function (){}
 </div>
 <div class="form-group">
 <label>Fine </label>
-<input class="form-control" value ="<?php echo $fine; ?>"   autocomplete="off" required readonly />
+<input class="form-control" value ="₹<?php echo $fine; ?>"   autocomplete="off" required readonly />
 
 </div>
 <button type="submit" name="check" class="btn btn-success mt-2" id="submit">check </button>                 
