@@ -2,14 +2,18 @@
 session_start();
 include('style/phpfile/config.php');
 error_reporting(0);
-if(strlen($_SESSION['login'])==0)
+if(strlen($_SESSION['login'])==0 &&strlen($_SESSION['libid'])==0&&strlen($_SESSION['admin'])==0)
     {   
 header('location:front.php');
 }
 else{ 
 if(isset($_POST['update']))
-{    
-$sid=$_SESSION['stdid'];  
+{  
+    $sid;
+    if($_SESSION['stdid'])  
+$sid=$_SESSION['stdid'];
+if($_GET['upd'])  
+$sid=$_GET['upd'];
 $fname=$_POST['fullanme'];
 $mobileno=$_POST['mobileno'];
 
@@ -36,7 +40,8 @@ echo '<script>alert("Your profile has been updated")</script>';
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
-<link href="style/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+ 
 <link href="style/css/style.css" rel="stylesheet" />
 <title>Document</title>
 </head>
@@ -64,7 +69,13 @@ echo '<script>alert("Your profile has been updated")</script>';
                         <div class="panel-body">
                             <form name="signup" method="post">
 <?php 
+    $sid;
+    if($_SESSION['stdid'])  
 $sid=$_SESSION['stdid'];
+
+if($_GET['upd'])  
+$sid=$_GET['upd'];
+
 $sql="SELECT StudentId,FullName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  tblstudents  where StudentId=:sid ";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':sid', $sid, PDO::PARAM_STR);
