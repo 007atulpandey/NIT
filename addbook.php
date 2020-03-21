@@ -13,6 +13,18 @@ $qry = $dbh->prepare($sq);
 $qry->execute();
 $cnt = $qry->rowCount();
 $id = $cnt+1;
+$rst = $qry->fetchAll();
+$flag=0;
+foreach ($rst as $key) {
+  if($key->BookName ==$_POST['name'] && $key->Publication==$_POST['publication'] && $key->Author==$_POST['author']){
+    $x= $_POST['total']+$key->Totalavailable;
+    $sql = "UPDATE `books` SET `Totalavailable` = '".$x."' WHERE `books`.`id` = ;".$key->id;
+    $query = $dbh->prepare($sql);
+    $flag=1;
+  }
+  # code...
+}
+if($flag==0){
 $name=$_POST['name'];
 $publication=$_POST['publication'];
 $author=$_POST['author']; 
@@ -25,7 +37,7 @@ $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':publication',$publication,PDO::PARAM_STR);
 $query->bindParam(':bookprice',$price,PDO::PARAM_STR);
 $query->bindParam(':total',$total,PDO::PARAM_STR);
-
+}
 if($query->rowCount() && $name.length > 0)
 $query->execute();
 

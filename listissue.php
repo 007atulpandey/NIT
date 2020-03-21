@@ -16,7 +16,7 @@ else{
     $query -> bindParam(':id',$id, PDO::PARAM_STR);
     $query -> execute();
     $_SESSION['delmsg']="Author deleted";
-    header('location:infostu.php');
+    header('location:listissue.php');
     
     }
     
@@ -98,7 +98,7 @@ foreach($results as $result)
             <div class="col-md-3 heading"><?php echo htmlentities($result->studId);?></div>
             <div class="col-md-3 heading"><?php echo htmlentities($result->BookId);?></div>
             <div class="col-md-2 heading"><?php echo htmlentities($result->IssueDate);?></div>
-            <div class="col-md-2 heading"><a href="listissue.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-danger" > X</button></a>  </div>   
+            <div class="col-md-2 heading"><a href="listissue.php?del=<?php echo htmlentities($result->id);?>"> <button class="btn btn-danger" > X</button></a>  </div>   
         </div>
  <?php }?>
 
