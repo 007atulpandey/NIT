@@ -20,7 +20,7 @@ $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, 
 $mail->Port = 587;                                    // TCP port to connect to
 
 $mail->From = 'apandey0826@gmail.com';
-$mail->FromName = 'ATP';
+$mail->FromName = 'DARK MATTER 0826';
 //$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
 $mail->addAddress($_POST['email']);               // Name is optional
 
@@ -28,8 +28,8 @@ $mail->addAddress($_POST['email']);               // Name is optional
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+$mail->Subject = $_POST['name'];
+$mail->Body    = $_POST['message'];
 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {

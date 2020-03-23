@@ -22,7 +22,17 @@ $StudentId= $hits[0];
 $fname=$_POST['fullanme'];
 $mobileno=$_POST['mobileno'];
 $email=$_POST['email']; 
-$password=md5($_POST['password']); 
+$password=md5($_POST['password']);
+
+
+// mailling  
+
+$sub = "REGISTER";
+$msg = "WELCOME TO OUR LIBRARY .... YOU ARE SUCCESSFULLY REGISTER !!!";
+$rec = $email;
+$check = mail($rec,$sub,$msg);
+if($check ){
+    
 $status=1;
 $sql="INSERT INTO  tblstudents(StudentId,FullName,MobileNumber,EmailId,Password,Status) VALUES(:StudentId,:fname,:mobileno,:email,:password,:status)";
 $query = $dbh->prepare($sql);
@@ -34,6 +44,18 @@ $query->bindParam(':password',$password,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 echo '<script>alert("Your Registration successfull and your student id is  "+"'.$hits[0].'")</script>';
+
+   
+}
+else {
+    echo "bad luck";
+}
+
+
+
+/// mailling
+
+
 
 // $lastInsertId = $dbh->lastInsertId();
 // if($lastInsertId)
