@@ -10,6 +10,8 @@ else {
     echo "this is a dash board ";
     echo $_SESSION["admin"];
 } ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +23,13 @@ else {
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
- 
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+   <!-- <link rel="stylesheet" href="css/custom-style.css"> -->
 <link href="style/css/style.css" rel="stylesheet" />
     <title>Document</title>
 </head>
@@ -30,11 +37,125 @@ else {
     <?php include('style/phpfile/header.php');   ?>
 
 
-<h1></h1><i class="fas fa-user-graduate"></i>
 
-</i>
+<!-- animation  -->
+<div class="container mt-5 mt-5">
+    
+
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4">
+  <a href="infostu.php" style = "text-decoration:none ; color :grey">
+    <div class="card py-3" data-aos="zoom-in-left">
+        <center>
+        <h1 style="font-size:90px;">  <i class="fas fa-user-graduate"></i> </h1>
+             
+        
+        <div class="card-body" >
+        <h5 class="card-title">Student Registered</h5>
+        <p class="card-text">
+         <?php 
+               $sq = "select * from tblstudents";
+               $q = $dbh->prepare($sq);
+               $q->execute();
+               $no = $q->rowCount();
 
 
+         ?>
+          Total Students  : <?php echo $no;  ?>
+        </p>
+        
+      </div>
+      </center>
+    </div>
+</a>
+  </div>
+  <div class="col mb-4">
+  <a href="listissue.php" style = "text-decoration:none ; color :grey">
+    <div class="card py-3" data-aos="zoom-in-left">
+        <center> 
+            <h1 style="font-size:90px;">                        <i class="fas fa-book"></i>                     </h1>
 
+        <div class="card-body">
+        <h5 class="card-title">Books Issued</h5>
+        <p class="card-text">
+        <?php 
+               $sq = "select * from issuedbooks";
+               $q = $dbh->prepare($sq);
+               $q->execute();
+               $noissue = $q->rowCount();
+
+
+         ?>
+          Total Issued  : <?php echo $noissue;  ?>    
+
+        </p>
+      </div>
+      </center>      
+    </div>
+</a>
+  </div>
+  <div class="col mb-4">
+      <a href="author.php" style = "text-decoration:none ; color :grey">
+    <div class="card py-3" data-aos="zoom-in-left">
+        <center>
+        <h1 style="font-size:90px;">                         <i class="fas fa-user-check"></i>                      </h1>
+
+            <div class="card-body">
+        <h5 class="card-title">Authors</h5>
+        <p class="card-text">
+        <?php 
+               $sq = "select Distinct author from books";
+               $q = $dbh->prepare($sq);
+               $q->execute();
+               $no = $q->rowCount();
+
+
+         ?>
+          Authors  : <?php echo $no;  ?>    
+
+        </p>
+      </div>
+      </center>
+    </div>
+    </a>
+  </div>
+  <div class="col mb-4">
+  <a href="totalbooks.php" style = "text-decoration:none ; color :grey">
+    <div class="card py-3" data-aos="zoom-in-left">
+        <center>
+        <h1 style="font-size:90px;">                         <i class="fas fa-id-card"></i>                     </h1>
+       
+              <div class="card-body">
+        <h5 class="card-title">Books Detail</h5>
+        <p class="card-text">
+        <?php 
+               $sq = "select sum(totalavailable) author from books";
+               $sl = "select * from books";
+               $ql = $dbh->prepare($sl);
+               $ql->execute();
+               $q = $dbh->prepare($sq);
+               $q->execute();
+               $result = $q->fetch();
+               
+
+         ?>
+           available  : <?php echo $result[0]-$noissue;  ?> 
+           <br>
+           types count : <?php echo $ql->rowCount() ; ?>
+        </p>
+      </div>
+      </center>
+    </div>
+</a>
+  </div>
+</div>
+
+</div>
+
+<!-- animation  -->
+<?php include('style/phpfile/footer.php')?>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>

@@ -175,8 +175,11 @@ include('style/phpfile/config.php');
               <li class="nav-item mr-2">
                 <a class="btn btn-outline-danger" href="liblogin.php">Librarian SignIn</a>
               </li>
+              <li class="nav-item mr-2">
+                <a class="btn btn-outline-danger" href="signup.php">SIGNUP</a>
+              </li>
              <?php  }?>
-             
+           
 
              
             </ul>
@@ -188,7 +191,7 @@ include('style/phpfile/config.php');
 
 
 
-<div class="container">
+<div class="container mt-5 mb-4">
     
  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -196,10 +199,10 @@ include('style/phpfile/config.php');
       <img src="https://cdn.quotes.pub/660x400/i-have-always-imagined-that-paradise-will-be-20965.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.quotes.pub/660x400/i-have-always-imagined-that-paradise-will-be-20965.jpg" class="d-block w-100" alt="...">
+      <img src="https://lh3.googleusercontent.com/proxy/tPcQ72nR6G_pHqROXKekeS2iuzojlztE12VY9cyXyXhJLVNLIs89JhS01UBHBPX7NS9W5PRAGiSG98w4V7b1_MMJI5hVSdGc1wppbdGTGS6K8p2AYk5b7XfBRWLaZzBTxYsRvYavwQG68sf3s07igJdFfK0" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.quotes.pub/660x400/i-have-always-imagined-that-paradise-will-be-20965.jpg" class="d-block w-100" alt="...">
+      <img src="https://s26162.pcdn.co/wp-content/uploads/2019/07/used-books-store-2.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

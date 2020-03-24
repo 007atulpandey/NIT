@@ -1,8 +1,8 @@
 <?php 
 require_once("style/phpfile/config.php");
 // code user email availablity
-if(!empty($_POST["emailid"])) {
-	$email= $_POST["emailid"];
+if(!empty($_POST["email"])) {
+	$email= $_POST["email"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
 
 		echo "error : You did not enter a valid email.";

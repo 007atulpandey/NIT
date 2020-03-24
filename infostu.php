@@ -99,7 +99,7 @@ foreach($results as $result)
             <div class="col-md-3 heading"><?php echo htmlentities($result->FullName);?></div>
             <div class="col-md-3 heading"><?php echo htmlentities($result->EmailId);?></div>
             <div class="col-md-2 heading"><?php echo htmlentities($result->MobileNumber);?></div>
-            <div class="col-md-2 heading"><a href="regstu.php?del=<?php echo htmlentities($result->StudentId);?> "> <button class="btn btn-danger" > X</button></a> 
+            <div class="col-md-2 heading"><a href="infostu.php?del=<?php echo htmlentities($result->StudentId);?>"> <button class="btn btn-danger" > X</button></a> 
             <a href="student.php?upd=<?php echo htmlentities($result->StudentId);?>"> <atul class="px-1 ml-1" style="color : green ;font-weight:bold ; ">  <i class="fas fa-wrench"></i></a> </atul>
              </div>   
         </div>
