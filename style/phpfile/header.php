@@ -91,10 +91,21 @@
                         <a href="adminpro.php" class="dropdown-item" type="button">Update Profile </a>
                         <a href="publications.php" class="dropdown-item" type="button">Publicatoins </a>
                         <a href="author.php" class="dropdown-item" type="button">Author </a>
+              
                       </div>
                     </div>
               </li>
-
+              <li class="nav-item mr-2">
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Librarian
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a href="libsignup.php" class="dropdown-item" type="button">add new </a>
+                        <a href="liblist.php" class="dropdown-item" type="button">check </a>
+                      </div>
+                    </div>
+              </li>
                           
 
               <a class="mr-2" href="admindashboard.php" style="text-decoration:none ; display: inline-flex">
@@ -112,7 +123,7 @@
       <!--   all set  -->
 
 
-              <?php if($_SESSION['libid']) {?>
+              <?php if($_SESSION['libid'] || $_SESSION['admin']) {?>
                 <li class="nav-item active">
                 <a class="nav-link" href="addbook.php">Add New Book </a>
               </li> 
@@ -122,12 +133,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="issue.php">Issue books </a>
               </li>
-              <?php if($_SESSION['admin']) {?>
-              <li class="nav-item active">
-                <a class="nav-link" href="libsignup.php">Reg  Librarian </a>
-              </li>
               
-              <?php } ?>
 
 
                           

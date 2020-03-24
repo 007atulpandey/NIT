@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
+include('style/phpfile/config.php');
 if(strlen($_SESSION['admin'])==0)
   { 
 header('location:index.php');
@@ -10,7 +10,6 @@ else {
     echo "this is a dash board ";
     echo $_SESSION["admin"];
 } ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

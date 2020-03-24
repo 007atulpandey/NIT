@@ -2,7 +2,7 @@
 session_start();
 include('style/phpfile/config.php');
 error_reporting(0);
-if(strlen($_SESSION['libid'])==0)
+if(strlen($_SESSION['libid'])==0 || strlen($_SESSION['admin'])==0)
     {   
 header('location:front.php');
 }
